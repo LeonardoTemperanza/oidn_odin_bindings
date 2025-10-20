@@ -346,16 +346,16 @@ foreign oidn_clib
     SetFilterImage :: proc(filter: Filter, name: cstring,
                            buffer: Buffer, format: Format,
                            width: c.size_t, height: c.size_t,
-                           byteOffset: c.size_t,
-                           pixelByteStride: c.size_t, rowByteStride: c.size_t) ---
+                           byteOffset: c.size_t = 0,
+                           pixelByteStride: c.size_t = 0, rowByteStride: c.size_t = 0) ---
 
     // Sets an image parameter of the filter with data owned by the user and accessible to the device.
     // If pixelByteStride and/or rowByteStride are zero, these will be computed automatically.
     SetSharedFilterImage :: proc(filter: Filter, name: cstring,
                                  devPtr: rawptr, format: Format,
                                  width: c.size_t, height: c.size_t,
-                                 byteOffset: c.size_t,
-                                 pixelByteStride: c.size_t, rowByteStride: c.size_t) ---
+                                 byteOffset: c.size_t = 0,
+                                 pixelByteStride: c.size_t = 0, rowByteStride: c.size_t = 0) ---
 
     // Unsets an image parameter of the filter that was previously set.
     UnsetFilterImage :: proc(filter: Filter, name: cstring) ---
