@@ -73,7 +73,7 @@ Error :: enum c.int
 }
 
 // Error callback function
-ErrorFunction :: #type proc(userPtr: rawptr, code: Error, message: cstring)
+ErrorFunction :: #type proc "c"(userPtr: rawptr, code: Error, message: cstring)
 
 // Device handle
 Device :: distinct rawptr
