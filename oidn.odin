@@ -285,7 +285,7 @@ foreign oidn_clib
     // Gets a pointer to the buffer data, which is accessible to the device but not necessarily to
     // the host as well, depending on the storage mode. Null pointer may be returned if the buffer
     // is empty or getting a pointer to data with device storage is not supported by the device.
-    GetBufferData :: proc(buffer: Buffer) ---
+    GetBufferData :: proc(buffer: Buffer) -> rawptr ---
 
     // Copies data from a region of the buffer to host memory.
     ReadBuffer :: proc(buffer: Buffer, byteOffset: c.size_t, byteSize: c.size_t, dstHostPtr: rawptr) ---
