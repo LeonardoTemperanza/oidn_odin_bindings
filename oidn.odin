@@ -209,43 +209,43 @@ Storage :: enum c.int
 ExternalMemoryTypeFlags :: distinct bit_set[ExternalMemoryTypeFlag; c.int]
 ExternalMemoryTypeFlag :: enum c.int
 {
-    NONE = 0,
-
     // opaque POSIX file descriptor handle
-    OPAQUE_FD = 1,
+    OPAQUE_FD = 0,
 
     // file descriptor handle for a Linux dma_buf
-    DMA_BUF = 2,
+    DMA_BUF = 1,
 
     // NT handle
-    OPAQUE_WIN32 = 3,
+    OPAQUE_WIN32 = 2,
 
     // global share (KMT) handle
-    OPAQUE_WIN32_KMT = 4,
+    OPAQUE_WIN32_KMT = 3,
 
     // NT handle returned by IDXGIResource1::CreateSharedHandle referring to a Direct3D 11 texture
     // resource
-    D3D11_TEXTURE = 5,
+    D3D11_TEXTURE = 4,
 
     // global share (KMT) handle returned by IDXGIResource::GetSharedHandle referring to a Direct3D 11
     // texture resource
-    D3D11_TEXTURE_KMT = 6,
+    D3D11_TEXTURE_KMT = 5,
 
     // NT handle returned by IDXGIResource1::CreateSharedHandle referring to a Direct3D 11 resource
-    D3D11_RESOURCE = 7,
+    D3D11_RESOURCE = 6,
 
     // global share (KMT) handle returned by IDXGIResource::GetSharedHandle referring to a Direct3D 11
     // resource
-    D3D11_RESOURCE_KMT = 8,
+    D3D11_RESOURCE_KMT = 7,
 
     // NT handle returned by ID3D12Device::CreateSharedHandle referring to a Direct3D 12 heap
     // resource
-    D3D12_HEAP = 9,
+    D3D12_HEAP = 8,
 
     // NT handle returned by ID3D12Device::CreateSharedHandle referring to a Direct3D 12 committed
     // resource
-    D3D12_RESOURCE = 10,
+    D3D12_RESOURCE = 9,
 }
+
+EXTERNAL_MEMORY_TYPE_FLAGS_NONE :: ExternalMemoryTypeFlags {}
 
 // Buffer handle
 Buffer :: distinct rawptr
