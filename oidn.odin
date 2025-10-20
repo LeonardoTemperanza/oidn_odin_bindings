@@ -264,12 +264,12 @@ foreign oidn_clib
 
     // Creates a shared buffer by importing external memory from a POSIX file descriptor.
     NewSharedBufferFromFD :: proc(device: Device,
-                                  fdType: ExternalMemoryTypeFlag,
+                                  fdType: ExternalMemoryTypeFlags,
                                   fd: c.int, byteSize: c.size_t) -> Buffer ---
 
     // Creates a shared buffer by importing external memory from a Win32 handle.
     NewSharedBufferFromWin32Handle :: proc(device: Device,
-                                           handleType: ExternalMemoryTypeFlag,
+                                           handleType: ExternalMemoryTypeFlags,
                                            handle: rawptr, name: rawptr, byteSize: c.size_t) -> Buffer ---
 
     // Creates a shared buffer from a Metal buffer.
