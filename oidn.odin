@@ -344,25 +344,25 @@ foreign oidn_clib
     // Sets an image parameter of the filter with data stored in a buffer.
     // If pixelByteStride and/or rowByteStride are zero, these will be computed automatically.
     SetFilterImage :: proc(filter: Filter, name: cstring,
-                               buffer: Buffer, format: Format,
-                               width: c.size_t, height: c.size_t,
-                               byteOffset: c.size_t,
-                               pixelByteStride: c.size_t, rowByteStride: c.size_t) ---
+                           buffer: Buffer, format: Format,
+                           width: c.size_t, height: c.size_t,
+                           byteOffset: c.size_t,
+                           pixelByteStride: c.size_t, rowByteStride: c.size_t) ---
 
     // Sets an image parameter of the filter with data owned by the user and accessible to the device.
     // If pixelByteStride and/or rowByteStride are zero, these will be computed automatically.
     SetSharedFilterImage :: proc(filter: Filter, name: cstring,
-                                     devPtr: rawptr, format: Format,
-                                     width: c.size_t, height: c.size_t,
-                                     byteOffset: c.size_t,
-                                     pixelByteStride: c.size_t, rowByteStride: c.size_t) ---
+                                 devPtr: rawptr, format: Format,
+                                 width: c.size_t, height: c.size_t,
+                                 byteOffset: c.size_t,
+                                 pixelByteStride: c.size_t, rowByteStride: c.size_t) ---
 
     // Unsets an image parameter of the filter that was previously set.
     UnsetFilterImage :: proc(filter: Filter, name: cstring) ---
 
     // Sets an opaque data parameter of the filter owned by the user and accessible to the host.
     SetSharedFilterData :: proc(filter: Filter, name: cstring,
-                                    hostPtr: rawptr, byteSize: c.size_t) ---
+                                hostPtr: rawptr, byteSize: c.size_t) ---
 
     // Notifies the filter that the contents of an opaque data parameter has been changed.
     UpdateFilterData :: proc(filter: Filter, name: cstring) ---
