@@ -3,5 +3,5 @@
 
 Copy this folder into your project and import using:
 ```odin
-import "oidn"
+import oidn "oidn_odin_bindings"
 ```
