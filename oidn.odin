@@ -243,6 +243,10 @@ ExternalMemoryTypeFlag :: enum c.int
     // NT handle returned by ID3D12Device::CreateSharedHandle referring to a Direct3D 12 committed
     // resource
     D3D12_RESOURCE = 9,
+
+    // modifier flag indicating that the external memory has dedicated allocation
+    // used only in combination with one of handle type flags above
+    DEDICATED = 30,
 }
 
 EXTERNAL_MEMORY_TYPE_FLAGS_NONE :: ExternalMemoryTypeFlags {}
