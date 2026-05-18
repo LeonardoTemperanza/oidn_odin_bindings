@@ -310,6 +310,82 @@ foreign oidn_clib
 }
 
 // -------------------------------------------------------------------------------------------------
+// Semaphore
+// -------------------------------------------------------------------------------------------------
+
+// External semaphore type flags
+ExternalSemaphoreTypeFlags :: distinct bit_set[ExternalSemaphoreTypeFlag; c.int]
+ExternalSemaphoreTypeFlag :: enum c.int
+{
+  // opaque POSIX file descriptor handle
+  Opaque_Fd = 0,
+
+  // opaque NT handle
+  Opaque_Win32 = 1,
+
+  // opaque global share (KMT) handle
+  Opaque_Win32_Kmt = 2,
+
+  // NT handle referencing a Direct3D 11 fence object
+  D3D11_Fence = 3,
+
+  // NT handle referencing a Direct3D 12 fence object
+  D3D12_Fence = 4,
+
+  // NT handle referencing a Direct3D 11 keyed mutex object
+  Keyed_Mutex = 5,
+
+  // global share (KMT) handle referencing a Direct3D 11 keyed mutex object
+  Keyed_Mutex_Kmt = 6,
+
+  // POSIX file descriptor referencing a timeline semaphore
+  Timeline_Semaphore_Fd = 7,
+
+  // NT handle referencing a timeline semaphore
+  Timeline_Semaphore_Win32 = 8,
+}
+
+EXTERNAL_SEMAPHORE_TYPE_FLAGS_NONE :: ExternalSemaphoreTypeFlags {}
+
+// Semaphore handle
+Semaphore :: distinct rawptr
+
+@(default_calling_convention="c", link_prefix="oidn")
+foreign oidn_clib
+{
+    // Creates a shared semaphore by importing an external semaphore from a POSIX file descriptor.
+    oidnNewSharedSemaphoreFromFD :: proc(device: Device,
+                                         fdType: ExternalSemaphoreTypeFlags,
+                                         fd: c.int) -> Semaphore ---
+
+    // Creates a shared semaphore by importing an external semaphore from a Win32 handle.
+    oidnNewSharedSemaphoreFromWin32Handle :: proc(device: Device,
+                                                  handleType: ExternalSemaphoreTypeFlags,
+                                                  handle: rawptr, name: rawptr) -> Semaphore ---
+
+    // Signals semaphores using optionally specified values/keys (required only for certain semaphore
+    // types, otherwise may be null) asynchronously.
+    oidnSignalSemaphoresAsync :: proc(device: Device,
+                                      semaphores: [^]Semaphore,
+                                      values: [^]u64,
+                                      numSemaphores: c.int) ---
+
+    // Waits on semaphores using optionally specified values/keys and timeouts in milliseconds (required
+    // only for certain semaphore types, otherwise may be null) asynchronously.
+    oidnWaitSemaphoresAsync :: proc(device: Device,
+                                    semaphores: [^]Semaphore,
+                                    values: [^]u64,
+                                    timeoutsMs: [^]u32,
+                                    numSemaphores: c.int) ---
+
+    // Retains the semaphore (increments the reference count).
+    oidnRetainSemaphore :: proc(semaphore: Semaphore) ---
+
+    // Releases the semaphore (decrements the reference count).
+    oidnReleaseSemaphore :: proc(semaphore: Semaphore) ---
+}
+
+// -------------------------------------------------------------------------------------------------
 // Filter
 // -------------------------------------------------------------------------------------------------
 
