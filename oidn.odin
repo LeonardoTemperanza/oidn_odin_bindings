@@ -321,32 +321,32 @@ foreign oidn_clib
 ExternalSemaphoreTypeFlags :: distinct bit_set[ExternalSemaphoreTypeFlag; c.int]
 ExternalSemaphoreTypeFlag :: enum c.int
 {
-  // opaque POSIX file descriptor handle
-  OPAQUE_FD = 0,
+    // opaque POSIX file descriptor handle
+    OPAQUE_FD = 0,
 
-  // opaque NT handle
-  OPAQUE_WIN32 = 1,
+    // opaque NT handle
+    OPAQUE_WIN32 = 1,
 
-  // opaque global share (KMT) handle
-  OPAQUE_WIN32_KMT = 2,
+    // opaque global share (KMT) handle
+    OPAQUE_WIN32_KMT = 2,
 
-  // NT handle referencing a Direct3D 11 fence object
-  D3D11_FENCE = 3,
+    // NT handle referencing a Direct3D 11 fence object
+    D3D11_FENCE = 3,
 
-  // NT handle referencing a Direct3D 12 fence object
-  D3D12_FENCE = 4,
+    // NT handle referencing a Direct3D 12 fence object
+    D3D12_FENCE = 4,
 
-  // NT handle referencing a Direct3D 11 keyed mutex object
-  KEYED_MUTEX = 5,
+    // NT handle referencing a Direct3D 11 keyed mutex object
+    KEYED_MUTEX = 5,
 
-  // global share (KMT) handle referencing a Direct3D 11 keyed mutex object
-  KEYED_MUTEX_KMT = 6,
+    // global share (KMT) handle referencing a Direct3D 11 keyed mutex object
+    KEYED_MUTEX_KMT = 6,
 
-  // POSIX file descriptor referencing a timeline semaphore
-  TIMELINE_SEMAPHORE_FD = 7,
+    // POSIX file descriptor referencing a timeline semaphore
+    TIMELINE_SEMAPHORE_FD = 7,
 
-  // NT handle referencing a timeline semaphore
-  TIMELINE_SEMAPHORE_WIN32 = 8,
+    // NT handle referencing a timeline semaphore
+    TIMELINE_SEMAPHORE_WIN32 = 8,
 }
 
 EXTERNAL_SEMAPHORE_TYPE_FLAGS_NONE :: ExternalSemaphoreTypeFlags {}
