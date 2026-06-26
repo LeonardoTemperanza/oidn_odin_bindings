@@ -17,7 +17,21 @@ MTLBuffer_id :: distinct rawptr
 UUID_SIZE :: 16 // size of a universally unique identifier (UUID) of a physical device
 LUID_SIZE :: 8  // size of a locally unique identifier (LUID) of a physical device
 
-foreign import oidn_clib "OpenImageDenoise.lib"
+when ODIN_OS == .Windows {
+    when ODIN_ARCH == .amd64 {
+        foreign import oidn_clib "lib/win_x64/OpenImageDenoise.lib"
+    } else {
+        #panic("Unsupported architecture for OIDN binaries on Windows")
+    }
+} else when ODIN_OS == .Linux {  // TODO: Untested!
+    when ODIN_ARCH == .amd64 {
+        foreign import oidn_clib "bin/linux_x64/libOpenImageDenoise.so"
+    } else {
+        #panic("Unsupported architecture for OIDN binaries on Linux")
+    }
+} else {
+    #panic("Unsupported platform.")
+}
 
 @(default_calling_convention="c", link_prefix="oidn")
 foreign oidn_clib
